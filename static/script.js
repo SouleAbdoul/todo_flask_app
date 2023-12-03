@@ -1,5 +1,8 @@
 // add task functionality
 let i = 0;
+
+// Function make the http post call 
+// to add a new task
 function sendDate(task){
     fetch("http://localhost:5000/login", {
     method: "POST",
@@ -11,6 +14,8 @@ function sendDate(task){
   console.log("data posted")
 )
 }
+
+// Function to get all the task from the database
 async function getData(){
     let new_data ;
     let response = await fetch("http://localhost:5000/login")
@@ -18,23 +23,9 @@ async function getData(){
     //console.log(data);
     return new_data;
 }
-//function getData(){
- //   let data;
-  //  fetch("http://localhost:5000/login",{
-   //     method:'GET',
-    //    headers:{
-     //       'Content-type': 'application/json',
-      //  }
-    //})
-    //.then((response) => response.json())
-    //.then(console.log(response))
-    //.catch((error)=>{
-     //   console.log(error);
-    //})
-    //return data;
-//}
 
 
+// Function to add a new task
 function addTask() {
     // get the input field and task list elements
     let taskInput = document.getElementById("new-task");
@@ -62,15 +53,12 @@ function addTask() {
 }
 
  function deleteTask(){
-      document.addEventListener('click', async function(e){
+         // First post the todo name in the todo list
+        // second when clicked over it should disapear from the list and appear to the completed list
+        document.addEventListener('click', async function(e){
         e.preventDefault();
         var t = e.target;
-        // First post the todo name in the todo list
-        // second when clicked over it should disapear from the list and appear to the completed list
-        // 
-        console.log(t.innerHTML);
         let my_data = await getData()
-          console.log(my_data[0]);
     },false)
     
 }
